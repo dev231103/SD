@@ -1,0 +1,57 @@
+Practical No. 1: Basic Data Processing
+Requirements:
+Modules: pandas
+Files: C:/VKHCG/01-Vermeulen/00-RawData/IP_DATA_ALL.csv
+
+Practical No. 2: Data Cleaning
+Requirements:
+Modules: pandas, numpy
+Files: C:/VKHCG/01-Vermeulen/00-RawData/IP_DATA_ALL.csv
+
+Practical No. 3: Utilities and Auditing
+Requirements:
+Modules: datetime, string
+Functions:
+Removing leading/trailing spaces from data
+Removing non-printable characters
+Reformatting dates from YYYY-MM-DD to DD Month YYYY
+
+Practical No. 4: Retrieving Data
+Requirements:
+Modules: RStudio, readr, dplyr, data.table, janitor
+Files: C:/HKVCG/10-Vermeunel/00-RawData/IP_DATA_ALL.csv
+
+Practical No. 5: Data Visualization and Clustering
+Requirements:
+Modules: pandas, networkx, matplotlib
+Files: Retrieve_Router_Location.csv, Retrieve_Country_Code.csv
+
+Practical No. 6: Network Routing Analysis
+Requirements:
+Modules: pandas
+Files: Assess-Network-Routing-Customer.csv
+
+Practical No. 7: Outlier Detection
+Requirements:
+Modules: pandas
+Files: C:/VKHCG/01-Vermeulen/00-RawData/IP_DATA_CORE.csv
+
+Practical No. 8: Clustering for Warehouse Location
+Requirements:
+Modules: pandas
+Files: Retrieve_All_Countries.csv
+
+Practical No. 9: Report Superstep - Vermeulen PLC
+Requirements:
+Modules: pandas, networkx, matplotlib
+Files: C:/VKHCG/01-Vermeulen/02-Assess/01-EDS/02-Python/Assess-Network-Routing-Customer.csv
+
+
+Practical No. 10: Data Visualization with Power BI
+Requirements:
+Software: Microsoft Power BI
+Datasets: Products.csv, NorthWind Odata
+Steps:
+Connect to an Excel Workbook.
+Import order data from an OData feed.
+Transform data and ensure proper data types.
