@@ -1,1 +1,74 @@
 git clone https://github.com/Apress/practical-data-science.git
+
+
+2a -Country_Code.csv
+2b - Country_Code.xml
+2c - Country_Code.json
+2d - utility.db
+
+
+1	Creating and using database in Cassandra	
+2	Write the programs for the following:
+a. Text Delimited CSV to HORUS format
+b. XML to HORUS format
+c. JSON to HORUS format
+d. MySQL database to HORUS format
+e. Picture (JPEG) to HORUS format
+f. Video to HORUS format
+g. Audio to HORUS format	
+
+
+
+
+
+
+
+
+
+
+1	Creating and using database in Cassandra
+2	Write the programs for the following:
+a. Text Delimited CSV to HORUS format
+b. XML to HORUS format
+c. JSON to HORUS format
+d. MySQL database to HORUS format
+e. Picture (JPEG) to HORUS format
+f. Video to HORUS format
+g. Audio to HORUS format
+	
+3	a. Fixers Utilities
+b. Data Binning or Bucketing
+c. Averaging of data
+d. Outlier Detection
+e. Logging	
+
+4	a. Perform following data processing using R
+b. Program retrieve different attributes of data
+c. Data pattern
+d. Loading IP_DATA_ALL	
+
+5	a. Perform error management on the given data using pandas package.
+b. Write python/R program to create the network routing diagram from the given data on routers.
+c. Write a python/R program to build acyclic graph.
+d. Write python/R program to pick the content for Billboards from the given data.
+e. Write a python/R program to generate GML file from given csv file.
+f. Write python/R program to plan location of warehouse from the given data.
+g. Write python/R program using data science via clustering to determine new warehouse using the given data.
+h. Using the given data Write python/R program to plan the shipping routers from best-fit international logistics.
+i. Write python/R program to delete the best packing option to ship in container from the given data.
+j. Write python program to create delivery route using the given data.
+k. Write python program to crate simple forex trading planner from the given data.
+l. Write python program to process the balance sheet to ensure the only good data is processing.
+m. Write python program to generate payroll from the given data.	
+
+6	Build the time hub, links and satellites
+	
+7	 Transforming data
+	
+8	Organizing data
+	
+9	 Generating data
+	
+10	Data visualisation using Power BI	
+
+
