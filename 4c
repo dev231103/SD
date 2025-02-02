@@ -1,0 +1,24 @@
+> library(readr) 
+> library(data.table) 
+> IP_DATA_ALL<-read_csv("C:/Users/Rohsn 
+Chimbaikar/PycharmProjects/Data
+Science_Practicals/Raw_Data/IP_DATA_ALL.csv") 
+> hist_country = data.table(Country = unique(IP_DATA_ALL$Country)) 
+> pattern_country = 
+data.table(Country=hist_country$Country,PatternCountry=hist_country$C
+ ountry) 
+> oldchar = c(letters,LETTERS) 
+> newchar =replicate(length(oldchar),"A") 
+> for (r in seq(nrow(pattern_country))) { 
++ s = pattern_country[r,]$PatternCountry; 
++ for (c in seq(length(oldchar))) { 
++ s=chartr(oldchar[c],newchar[c],s) 
++ }; 
++ for (n in seq(0,9,1) ){ 
++ s = chartr(as.character(n),"N",s) 
++ }; 
++ s = chartr(" ","b",s) 
++ s = chartr(".","u",s) 
++ pattern_country[r,]$PatternCountry = s; 
++ }; 
+> View(pattern_country)
