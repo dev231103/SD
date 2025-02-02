@@ -7,24 +7,6 @@ git clone https://github.com/Apress/practical-data-science.git
 2d - utility.db
 
 
-1	Creating and using database in Cassandra	
-2	Write the programs for the following:
-a. Text Delimited CSV to HORUS format
-b. XML to HORUS format
-c. JSON to HORUS format
-d. MySQL database to HORUS format
-e. Picture (JPEG) to HORUS format
-f. Video to HORUS format
-g. Audio to HORUS format	
-
-
-
-
-
-
-
-
-
 
 1	Creating and using database in Cassandra
 2	Write the programs for the following:
