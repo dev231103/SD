@@ -1,0 +1,67 @@
+> library(readr) 
+> IP_DATA_ALL<-read_csv("C:\\Users\\Rohsn Chimbaikar\\PycharmProjects
+ \\Data-Science_Practicals\\Raw_Data\\IP_DATA_ALL.csv") 
+> View(IP_DATA_ALL) 
+> spec(IP_DATA_ALL) 
+>library(tibble) 
+> set_tidy_names(IP_DATA_ALL,syntactic = TRUE,quiet = FALSE)
+> IP_DATA_ALL_FIX = set_tidy_names(IP_DATA_ALL,syntactic = TRUE,quiet 
+= TRUE) 
+> sapply(IP_DATA_ALL_FIX,typeof)
+>IP_DATA_ALL_FIX <- as.data.table(IP_DATA_ALL_FIX) 
+> hist_country <- data.table(Country = unique(IP_DATA_ALL_FIX[!is.na(
+ Country)]$Country)) 
+ 
+>setorder(hist_country,'Country') 
+> hist_country_with_id = rowid_to_column(hist_country,var="RowIDCount
+ ry") 
+> View(hist_country_with_id)
+>IP_DATA_COUNTRY_FREQ=data.table(with(IP_DATA_ALL_FIX,table(Country))
+ ) 
+> setorder(IP_DATA_COUNTRY_FREQ, -N) 
+> View(IP_DATA_COUNTRY_FREQ) 
+> hist_latitude <- data.table(Latitude = 
+unique(IP_DATA_ALL_FIX[!is.na(Latitude)]$Latitude)) 
+> View(hist_latitude)
+> setkey(hist_latitude,'Latitude') 
+> setorder(hist_latitude) 
+> hist_latitude_with_id = rowid_to_column(hist_latitude,var="RowID") 
+> View(hist_latitude_with_id) 
+>IP_DATA_Latitude_FREQ=data.table(with(IP_DATA_ALL_FIX,table(Latitude))
+ ) 
+> View(IP_DATA_Latitude_FREQ) 
+ > sapply(IP_DATA_ALL_FIX[,'Latitude'],min,na.rm = TRUE) 
+Latitude  -54.2767  
+> sapply(IP_DATA_ALL_FIX[,'Country'],min,na.rm = TRUE) 
+ Country  
+   "AD"  
+> sapply(IP_DATA_ALL_FIX[,'Latitude'],max,na.rm = TRUE) 
+Latitude  
+78.2167  
+> sapply(IP_DATA_ALL_FIX[,'Country'],max,na.rm = TRUE) 
+Country  
+   "ZW" 
+> sapply(IP_DATA_ALL_FIX[,'Latitude'],mean,na.rm = TRUE) 
+ 
+Latitude  
+39.58496  
+> sapply(IP_DATA_ALL_FIX[,'Latitude'],median,na.rm = TRUE) 
+Latitude  
+41.9232  
+> sapply(IP_DATA_ALL_FIX[,'Latitude'],range,na.rm = TRUE) 
+     Latitude 
+[1,] -54.2767 
+[2,]  78.2167 
+> sapply(IP_DATA_ALL_FIX[,'Latitude'],quantile,na.rm = TRUE) 
+      Latitude 
+0%   -54.27670 
+25%   35.88960 
+50%   41.92320 
+75%   49.28077 
+     100%  78.21670 
+> sapply(IP_DATA_ALL_FIX[,'Latitude'],sd,na.rm = TRUE) 
+Latitude  
+16.85403  
+> sapply(IP_DATA_ALL_FIX[,'Longitude'],sd,na.rm = TRUE) 
+Longitude  
+71.78892 
