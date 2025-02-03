@@ -1,0 +1,83 @@
+import sys 
+import os 
+import pandas as pd 
+import re 
+ 
+# Base directory setup 
+Base = ‘C:/ VKHCG’ 
+ 
+# File path for reading the data 
+sFileName = Base+'/01-Vermeulen/00-RawData/IP_DATA_ALL.csv ' 
+print(f'Loading: {sFileName}') 
+ 
+# Load the CSV file with specific encoding and options 
+try: 
+    IP_DATA_ALL = pd.read_csv(sFileName, header=0, 
+low_memory=False, encoding="latin-1") 
+    print('Rows:', IP_DATA_ALL.shape[0]) 
+    print('Columns:', IP_DATA_ALL.shape[1]) 
+except FileNotFoundError as e: 
+    print(f"Error: {e}") 
+    sys.exit() 
+ 
+# Display raw data column names and types 
+print('### Raw Data Set ###') 
+for i in range(0, len(IP_DATA_ALL.columns)): 
+    print(f"{IP_DATA_ALL.columns[i]}: 
+{type(IP_DATA_ALL.columns[i])}") 
+ 
+# Rename columns for consistency and save as a "fixed" 
+dataset 
+IP_DATA_ALL_FIX = IP_DATA_ALL.copy() 
+IP_DATA_ALL_FIX.columns = [col.replace(" ","_").replace(".", 
+"_") for col in IP_DATA_ALL_FIX.columns] 
+print('### Fixed Data Set ###') 
+for i in range(0, len(IP_DATA_ALL_FIX.columns)): 
+    print(f"{IP_DATA_ALL_FIX.columns[i]}: 
+{type(IP_DATA_ALL_FIX.columns[i])}") 
+ 
+# Save the fixed dataset with a new name 
+output_file = Base + '/ProcessedData/IP_DATA_ALL_CLEAN.csv' 
+ 
+# Ensure the output directory exists 
+os.makedirs(os.path.dirname(output_file), exist_ok=True) 
+M.Sc.I.T (I)  Data Science 
+ 
+34 
+ 
+Name: Prajapati Hemlata Shrawan 
+ 
+Roll No: IT-3102 
+IP_DATA_ALL_FIX.to_csv(output_file, index=False, 
+encoding="latin-1") 
+print(f"### File saved to {output_file} ###") 
+ 
+# Function to generate a pattern for a given text 
+def generate_pattern(text): 
+    # Ensure the input is a string 
+    if not isinstance(text, str): 
+        return None 
+# Replace alphabetical characters with 'A', digits with 'N', 
+and special characters as specified 
+    text = re.sub(r'[a-zA-Z]', 'A', text) 
+    text = re.sub(r'[0-9]', 'N', text) 
+    text = re.sub(r'\s', 'b', text) 
+    text = re.sub(r'\.', 'u', text) 
+    return text 
+ 
+# Apply pattern generation to the 'Country' column 
+pattern_country = 
+pd.DataFrame(IP_DATA_ALL_FIX['Country'].unique(), 
+columns=['Country']) 
+pattern_country['PatternCountry'] = 
+pattern_country['Country'].apply(generate_pattern) 
+ 
+# Print a sample of pattern data 
+print('### Pattern Data Sample ###') 
+print(pattern_country.head()) 
+ 
+# Save pattern data to a CSV file 
+pattern_file = Base + '/ProcessedData/Country_Patterns.csv' 
+pattern_country.to_csv(pattern_file, index=False, 
+encoding="latin-1") 
+print(f"### Pattern data saved to {pattern_file} ###") 
