@@ -1,0 +1,112 @@
+steps
+Step 1. Connect to an Excel Workbook.  
+Open Power BI Desktop and connect to an excel workbook. Click on the Products.xlsx 
+file to open it 
+A Navigator Dialog Box Opens.
+ Step 2. Click on Transform Data 
+     This will open the Query Editor. Now Remove all columns except the following: 
+     ProductID, ProductName, UnitsInStock, QuantityPerUnit 
+   
+Select Remove Columns → Remove Other Columns from the ribbon, or right-click on a column 
+header and click Remove Other Columns. 
+ 
+Step 3: Change the data type of the UnitsInStock column 
+For the Excel workbook, products in stock will always be a whole number, so in this step you 
+confirm the UnitsInStock column's datatype is Whole Number.
+1. Select the UnitsInStock column. 
+2. Select the Data Type drop-down button in the Home ribbon. 
+3. If not already a Whole Number, select Whole Number for data type from the drop down  
+ 
+         Task 2: Import order data from an OData feed 
+You import data into Power BI Desktop from the sample Northwind OData feed at the 
+following URL, which you can copy (and then paste) in the steps below: 
+services.odata.org/V4/Northwind/Northwind.svc/ 
+Step 1: Connect to an OData feed 
+l. From the Home ribbon tab in Query Editor, select Get Data. 
+2. Browse to the OData Feed data source. 
+3. In the OData Feed dialog box, paste the URL for the Northwind OData feed. 
+4. Select OK. 
+ Step 2: Load the Orders Table and Expand the Order Details column 
+        Expand the Order Details table that is related to the Orders table, to combine the ProductID, 
+        UnitPrice, and Quantity columns from Order_Details into the Orders table. 
+        The Expand operation combines columns from a related table into a subject table. When the query 
+        runs, rows from the related table (Order_Details) are combined into rows from the subject table 
+       (Orders). 
+      
+After you expand the Order_Details table, three new columns and additional rows are added to the 
+Orders table, one for each row in the nested or related table. 
+l. In the Query View, scroll to the Order _ Details column. 
+2. In the Order_Details column, select the expand icon (). 
+3. In the Expand drop-down: a. Select (Select All Columns) to clear all columns. 
+4. Select ProductID, UnitPrice, and Quantity. 
+5. Click OK.
+Step 3: Remove other columns to only display columns of interest 
+In this step you remove all columns except OrderDate, ShipCity, ShipCountry, 
+Order Details.ProductID, Order_Details.UnitPrice, and Order Details.Quantity columns. In the 
+previous task, you used Remove Other Columns. For this task, you remove selected columns. 
+In the Query View, select all columns by completing the following: 
+a. Click the first column (OrderlD). 
+b. Shift+Click the last column (Shipper). 
+c. Now that all columns are selected, use Ctrl+Click to unselect the following columns: 
+OrderDate, ShipCity, ShipCountry, Order Details.ProductID, Order _ Details.UnitPrice, and 
+Order_Details.Quantity. 
+Now that only the columns we want to remove are selected, right-click on any selected column 
+header and click Remove Columns.
+Step 4: Calculate the line total for each Order_Details row 
+Power BI Desktop lets you to create calculations based on the columns you are importing, so you 
+can enrich the data that you connect to. In this step, you create a Custom Column to calculate the 
+line total for each Order Details row. 
+Calculate the line total for each Order Details row: 
+1. In the Add Column ribbon tab, click Add Custom Column. 
+2. In the Add Custom Column dialog box, in the Custom Column Formula textbox, enter 
+[Order _ Details.UnitPrice] * [Order Details.Quantity]. 
+3. In the New column name textbox, enter LineTotal.
+Step 5: Set the datatype of the LineTotal field 
+l. Right click the LineTotal column. 
+      2. Select Change Type and choose Decimal Number.
+ Step 6: Rename and reorder columns in the query 
+l. In Query Editor, drag the LineTotal column to the left, after ShipCountry 
+2. Remove the Order_Details prefix from the Order_Details.ProductID, Order_Details.UnitPrice 
+and Order_Details.Quantity columns, by double-clicking on each column header, and then 
+deleting that text from the column name.
+ 
+Task 3: Combine the Products and Total Sales queries 
+Step 1: Confirm the relationship between Products and Total Sales 
+i. First. We need to load the model that we created in Query Editor into Power Bl Desktop. 
+ii.  From the Home Ribbon of Query Editor, select Close & Apply 
+iii. Power BI Desktop loads the data from the two queries 
+iv. Once the data is loaded, select the Manage Relationships button Home ribbon 
+v. Select the New button
+vi.  When we attempt to create the relationship, we see that one already exists! 
+ As shown in the Create Relationship dialog (by the shaded columns) , the ProductsID 
+fields in each query already have an established relationship. 
+ 
+ 
+ 
+ 
+vii. Select Cancel, and then select Relationship view in Power BI Desktop.
+Task 4: Build visuals using your data 
+          Steps: 
+i. Click on ProductName and UnitsInStock Columns in the Products Table 
+ 
+ 
+ 
+ii. Now Click on Clustered Column Charts in the Visualizations Tab 
+iii. Drag UnitsInStock to Y-Axis 
+ 
+ 
+ 
+iv. And Convert the Count of UnitsInStock to Sum in the following way
+As a result, the following chart appears
+Now let’s create a date wise visualization, OrderDate by StockValue, Select OrderDate 
+and StockValue from Orders Table and Click on Line Chart 
+ 
+ 
+As a result we get the following Line Chart
+ 
+vii. Finally, we drag the ShippingCoutry Column to the canvas 
+ 
+ 
+Which results into map data 
+ 
+                       Interact with the visuals to analyze further
