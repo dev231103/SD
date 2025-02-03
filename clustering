@@ -1,0 +1,58 @@
+import os
+import pandas as pd
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+# Define Base Path
+Base = 'C:/VKHCG'
+
+# Define Company & File Paths
+Company = '03-Hillman'
+InputDir = '01-Retrieve/01-EDS/01-R'
+InputFileName = 'Retrieve_All_Countries.csv'
+EDSDir = '02-Assess/01-EDS'
+OutputDir = EDSDir + '/02-Python'
+OutputFileName = 'Assess_All_Warehouse.csv'
+
+# Ensure Output Directory Exists
+sFileDir = os.path.join(Base, Company, OutputDir)
+os.makedirs(sFileDir, exist_ok=True)
+
+# Load Data
+sFileName = os.path.join(Base, Company, InputDir, InputFileName)
+print('Loading:', sFileName)
+
+Warehouse = pd.read_csv(sFileName, header=0, low_memory=False, encoding="latin-1")
+
+# Rename Columns
+sColumns = {'X1': 'Country', 'X2': 'PostCode', 'X3': 'PlaceName', 'X4': 'AreaName',
+            'X5': 'AreaCode', 'X10': 'Latitude', 'X11': 'Longitude'}
+Warehouse.rename(columns=sColumns, inplace=True)
+
+# Select Only Relevant Data (Latitude & Longitude for Clustering)
+WarehouseGood = Warehouse[['Country', 'PlaceName', 'Latitude', 'Longitude']].dropna()
+
+# Apply K-Means Clustering to Find New Warehouse Location
+kmeans = KMeans(n_clusters=1, random_state=42)  # 1 Cluster (Ideal Warehouse Location)
+kmeans.fit(WarehouseGood[['Latitude', 'Longitude']])
+
+# Get Warehouse Coordinates
+new_warehouse_location = kmeans.cluster_centers_[0]
+WarehouseGood['Cluster'] = kmeans.labels_
+
+# Save Processed Data
+sOutputFile = os.path.join(sFileDir, OutputFileName)
+WarehouseGood.to_csv(sOutputFile, index=False)
+print('Saved Clustered Warehouse Data to:', sOutputFile)
+
+# Print Suggested Warehouse Location
+print(f"Suggested New Warehouse Location: Latitude {new_warehouse_location[0]}, Longitude {new_warehouse_location[1]}")
+
+# Visualize Clustering
+plt.scatter(WarehouseGood['Longitude'], WarehouseGood['Latitude'], c=WarehouseGood['Cluster'], cmap='viridis', alpha=0.5)
+plt.scatter(new_warehouse_location[1], new_warehouse_location[0], color='red', marker='X', s=200, label="Suggested Warehouse")
+plt.xlabel("Longitude")
+plt.ylabel("Latitude")
+plt.title("Warehouse Clustering")
+plt.legend()
+plt.show()
